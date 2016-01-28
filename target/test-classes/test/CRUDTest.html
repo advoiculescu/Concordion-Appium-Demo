@@ -1,0 +1,108 @@
+﻿<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+	<head>
+		<link href="concordion.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<h1>CRUD Test</h1>
+		<h2> Inicializar Aplicación </h2>
+		<div class="scenario">
+			<p>
+				<span class="execution" concordion:execute="setUp(#version,#deviceName,#platformName,#url)">Cuando arrancamos el driver con los parámetros</span>
+				<table >
+					<tr >
+						<th concordion:set="#version">Version</th>
+						<th concordion:set="#deviceName">Device Name</th>
+						<th concordion:set="#platformName">Platform Name</th>
+						<th concordion:set="#url">Appium Server URL</th>
+					</tr>
+					<tr>
+						<td>4.4</td>
+						<td>my_android</td>
+						<td>Android</td>
+						<td>http://127.0.0.1:4723/wd/hub</td>
+					</tr>
+				</table>
+				entonces la página 
+				<span concordion:assertEquals="getActivity()">.activities.PeopleActivity</span> se muestra correctamente.
+			</p>
+		</div>
+		<h2> Crear contacto </h2>
+		<div class="scenario">
+			<p>
+				Al <span class="execution" concordion:execute="clickNewContact()">pulsar "Create a new Contact"</span>, 
+				entonces la página <span concordion:assertEquals="getActivity()">.activities.ContactEditorActivity</span> se mostrará correctamente.
+			</p>
+			<p class="execution" concordion:execute="setContactData(#nombre,#telefono)">
+				A continuación introducimos
+				<span concordion:set="#nombre">Ruben</span> como nombre,
+				<span concordion:set="#telefono">619234567</span> como teléfono 
+				y <span class="execution" concordion:execute="clickDone()">pulsamos en el botón Done</span> situado en la parte superior izquierda de la pantalla.
+			</p>
+			<p>
+				Tras esto se mostrará la página 
+				<span concordion:assertEquals="getActivity()">.activities.ContactDetailActivity</span> 
+				con el contacto recién creado, que tendrá el nombre <span concordion:assertEquals="getName()">Ruben</span> (en la parte superior izquierda) 
+				y su número de teléfono será <span concordion:assertEquals="getPhone()">(619) 234-567</span>.
+			</p>
+		</div>
+		<h2> Modificar Contacto </h2>
+		<div class="scenario">
+		<p>
+			Para modificar el contacto recién creado, necesitaremos <span class="execution" concordion:execute="clickBack()"> volver a la pantalla anterior pulsando el botón atrás ( &lt; ) </span>.
+		</p>
+		<p>
+			En la pantalla <span concordion:assertEquals="getActivity()">.activities.PeopleActivity</span>, 
+			<span concordion:assertTrue="verifyContact(#nombre)">nuestro contacto recién creado estará listado con el nombre correcto</span>.
+		</p>
+		<p>
+			<span class="execution" concordion:execute="clickContact(#nombre)"> Lo seleccionamos pulsando sobre el nombre en la lista</span>,
+			y estaremos en la página de detalles del contacto, <span concordion:assertEquals="getActivity()">.activities.ContactDetailActivity</span>,
+			donde podremos <span class="execution" concordion:execute="clickOptions()">seleccionar el menú de opciones</span> 
+			y <span class="execution" concordion:execute="clickEdit()">seleccionar la opción "Edit"</span>.
+		</p>
+		<p class="execution" concordion:execute="setContactData(#nombre,#telefono)">
+			Estando en la pantalla <span concordion:assertEquals="getActivity()">.activities.ContactEditorActivity</span>,
+			introducimos <span concordion:set="#nombre">Ruben Modificado</span> como nombre y <span concordion:set="#telefono">619456789</span> como teléfono.
+		</p>
+		<p>
+			<span class="execution" concordion:execute="clickDone()">Al hacer click en el botón Done</span> volveremos a <span concordion:assertEquals="getActivity()">.activities.ContactDetailActivity</span>, donde
+			el contacto tendrá el nombre <span concordion:assertEquals="getName()">Ruben Modificado</span> y su teléfono será <span concordion:assertEquals="getPhone()">(619) 456-789</span>.
+		</p>
+		</div> 
+		<h2> Eliminar contacto </h2>
+		<div class="scenario">
+			<p>
+				A continuación desarrollaremos las actividades necesarias para borrar el contacto anteriormente creado.
+			</p>
+			<p>
+				Lo primero que necesitamos hacer es volver a la pantalla anterior haciendo click en el <span class="execution" concordion:execute="clickBack()">botón atrás</span> ( &lt; ) situado a la izquierda del nombre del contacto.
+			</p>	
+			<p>
+				Tras esto, volveremos a la página <span concordion:assertEquals="getActivity()">.activities.PeopleActivity</span>,
+				donde <span concordion:assertTrue="verifyContact(#nombre)">nuestro contacto estará listado con el nombre introducido anteriormente.</span>
+			</p>
+			<p>
+				Al <span class="execution" concordion:execute="clickContact(#nombre)">seleccionarlo</span> volveremos 
+				a la pantalla de edición <span concordion:assertEquals="getActivity()">.activities.ContactDetailActivity</span>.
+			</p>
+			<p>
+				Dado que estamos en la pantalla de edición de contacto <span concordion:assertEquals="getActivity()">.activities.ContactDetailActivity</span>, 
+				de nuestro contacto, <span class="execution" concordion:execute="clickOptions()">seleccionamos el menú de opciones </span> 
+				y a continuación <span class="execution" concordion:execute="clickDelete()">seleccionamos la  opción Delete</span>.
+			</p>
+			<p>
+				Al realizar esto, se muestra un alert con el texto "<span concordion:assertEquals="getDeleteMessage()">This contact will be deleted.</span>". 
+			</p>
+			<p>
+				Al <span class="execution" concordion:execute="clickDeleteOk()">pulsar en OK</span>, la aplicación volverá a la pantalla <span concordion:assertEquals="getActivity()">.activities.PeopleActivity</span>
+				y nuestro contacto <span concordion:assertFalse="verifyContact(#nombre)">ya no estará listado entre los demás.</span>
+			</p>
+		</div>
+		<h2> Cerrar aplicación </h2>
+		<div class="scenario">
+			<p>
+				Por último, <span class="execution" concordion:execute="tearDown()">cerramos la aplicación</span>.
+			</p>
+		</div>
+	</body>
+</html>
