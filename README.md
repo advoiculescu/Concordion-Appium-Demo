@@ -21,4 +21,4 @@ Para utilizarla necesitarás iniciar un Appium server en la dirección por defec
 
 También necesitarás tener instalado el Android SDK y arrancar un emulador con la versión 4.4  y bajo el nombre de my_android.
 
-El idioma de este dispositivo emulado debe de ser Inglés. De lo contrario, algunas validaciones del test fallarán, ya que esperan los mensajes a comprobar en Inglés.
+El idioma seleccionado de este dispositivo emulado debe de ser el Inglés. De lo contrario, algunas validaciones del test fallarán, ya que esperan los mensajes a comprobar en Inglés.
