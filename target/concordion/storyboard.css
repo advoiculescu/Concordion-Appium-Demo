@@ -1,0 +1,172 @@
+.screenshot {
+	position:absolute;
+	visibility:hidden;
+	left: 0;
+	top: 0;
+	height: auto;
+	border:solid 1px black;
+	z-index:3000;
+}
+
+.storyboard {
+		padding: 20px;
+	  border: 1px solid #ADADAD;
+		margin-bottom: 30px;
+	  margin-top: 30px;
+		background-color: #fdfdfd;
+	  background-color: #f1f1f1;
+}
+
+.storyboard > * {
+  margin-top: 0;
+}
+
+.storyboard ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.storycard {
+		background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0 ,0, 0, 0.4);
+    display: inline-block;
+    height: 186px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+    margin-right: 12px;
+    overflow: hidden;
+    padding: 10px 10px 12px;
+    position: relative;
+    text-align: center;
+    width: 210px;
+}
+
+.storycard .scimgcontainer {
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    display: block;
+    height: 136px;
+    overflow: hidden;
+    position: relative;
+    width: 208px;
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.storycard .scimgcontainer img {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.storycard .scimgcontainer .sizewidth {
+    width: 100%;
+}
+
+.storycard .scimgcontainer .sizeheight {
+    height: 100%;
+}
+
+.storycard p {
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.storycard .scsummary {
+	font-weight: 500;
+}
+
+.storycard .scdescription {
+	font-size: 13px;
+	color: #555;
+	text-overflow: ellipsis;
+}
+
+.scsuccess {
+	color: #1AA51A;
+}
+
+.scfailure{
+    color: #e00;
+}
+
+.scwarning{
+    color: orange;
+}
+
+/* Remove button added by FireFox plugin AllowLocalLinks */
+.storycard .alien-lfl-href-buttonLink {
+    display: none;
+}
+
+/* Expanding div support */
+.toggle-box-container {
+	margin-top: -1px;
+	border: 1px solid #ADADAD;
+	background-color: #fff;
+	padding-left: 20px;
+  padding-right: 20px;
+}
+
+.toggle-box-content {
+	margin-bottom: 4px;
+}
+
+.toggle-box-spacer {
+	height: 8px;
+}
+
+.toggle-box {
+  display: none;
+}
+
+.toggle-box:hover{
+	background-color: #f1f1f1;
+}
+
+.toggle-box + label {
+  cursor: pointer;
+  display: block;
+  padding-bottom: 12px;
+	padding-top: 12px;
+	line-height: 22px;
+	font-weight: 500;
+	padding-left: 20px;
+  padding-right: 20px;
+	margin-left: -20px;
+  margin-right: -20px;
+}
+
+.toggle-box + label + div {
+  display: none;
+}
+
+.toggle-box:checked + label + div {
+  display: block;
+}
+
+.toggle-box + label:before {
+  background-color: #319DD8;
+  border-radius: 20px;
+  width: 20px;
+	height: 20px;
+  line-height: 18px;
+  color: white;
+  content: "+";
+  display: block;
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.toggle-box:checked + label:before {
+  content: "\2212";
+}
+
+.screenshot {
+	border: none;
+	box-shadow: 0 1px 4px rgba(0 ,0, 0, 0.4);
+}
