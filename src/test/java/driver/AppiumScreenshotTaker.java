@@ -15,6 +15,11 @@ public class AppiumScreenshotTaker implements ScreenshotTaker {
 
     private final WebDriver driver;
 
+    /**
+     * Instancia la clase ScreenshotTaker para Appium
+     * 
+     * @param driver
+     */
     public AppiumScreenshotTaker(WebDriver driver) {
         WebDriver baseDriver = driver;
         while (baseDriver instanceof EventFiringWebDriver) {
@@ -23,9 +28,11 @@ public class AppiumScreenshotTaker implements ScreenshotTaker {
         this.driver = baseDriver;
     }
 
+    /* (non-Javadoc)
+     * @see org.concordion.ext.ScreenshotTaker#writeScreenshotTo(java.io.OutputStream)
+     */
     public int writeScreenshotTo(OutputStream outputStream) throws IOException {
         byte[] screenshot;
-        //System.out.println("SCREENSHOT");
         try {
             screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
         } catch (ClassCastException e) {
@@ -35,6 +42,9 @@ public class AppiumScreenshotTaker implements ScreenshotTaker {
         return ((Long)((JavascriptExecutor)driver).executeScript("return document.body.clientWidth")).intValue() + 2; //window.outerWidth"));
     }
 
+    /* (non-Javadoc)
+     * @see org.concordion.ext.ScreenshotTaker#getFileExtension()
+     */
     public String getFileExtension() {
         return "png";
     }

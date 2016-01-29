@@ -11,6 +11,11 @@ import io.appium.java_client.MobileBy;
 public class ObjectMap {
 	Properties properties;
 
+	/**
+	 * Instancia la clase ObjectMap
+	 * 
+	 * @param mapFile
+	 */
 	public ObjectMap(String mapFile) {
 		properties = new Properties();
 		try {
@@ -22,14 +27,25 @@ public class ObjectMap {
 		}
 	}
 
+	/**
+	 * Lee el archivo definido en el método ObjectMap y obtiene el locator
+	 * (localizador) en base al nombre del elemento pasado por parámetro.
+	 * 
+	 * 
+	 * @param logicalElementName
+	 * @return Un objeto de tipo By, que incluye el valor del locator.
+	 * @throws Exception
+	 */
 	public By getLocator(String logicalElementName) throws Exception {
-		// Read value using the logical name as Key
+		// Leemos el valor usando el nombre lógico como clave
+		// (obtenemos todo lo que está a la derecha del simbolo = )
 		String locator = properties.getProperty(logicalElementName);
-		// Split the value which contains locator type and locator value
+
+		// Dividimos el tipo y el valor del locator
 		String locatorType = locator.split(">")[0];
 		String locatorValue = locator.split(">")[1];
 
-		// Return a instance of By class based on type of locator
+		// Devuelve una instancia de clase By basada en el tipo de locator
 		if (locatorType.toLowerCase().equals("id"))
 			return MobileBy.id(locatorValue);
 		else if (locatorType.toLowerCase().equals("name"))
@@ -49,23 +65,32 @@ public class ObjectMap {
 		else if (locatorType.toLowerCase().equals("accessibilityid"))
 			return MobileBy.AccessibilityId(locatorValue);
 		else
-			throw new Exception("Locator type '" + locatorType + "' not defined!!");
+			throw new Exception("Tipo de locator '" + locatorType + "' no definido!");
 	}
-	
+
+	/**
+	 * Devuelve el tipo de locator (localizador).
+	 * 
+	 * @param logicalElementName
+	 * @return
+	 * @throws Exception
+	 */
 	public String getLocatorType(String logicalElementName) throws Exception {
-		// Read value using the logical name as Key
 		String locator = properties.getProperty(logicalElementName);
-		// Split the value which contains locator type and locator value
 		String locatorType = locator.split(">")[0];
 		return locatorType;
 	}
-	
+
+	/**
+	 * Devuelve el valor del locator (localizador).
+	 * 
+	 * @param logicalElementName
+	 * @return
+	 * @throws Exception
+	 */
 	public String getLocatorValue(String logicalElementName) throws Exception {
-		// Read value using the logical name as Key
 		String locator = properties.getProperty(logicalElementName);
-		// Split the value which contains locator type and locator value
 		String locatorValue = locator.split(">")[1];
 		return locatorValue;
 	}
 }
-
