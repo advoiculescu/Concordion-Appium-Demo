@@ -26,7 +26,7 @@ public class ContactDetailActivity {
 	 * .properties
 	 */
 	public ContactDetailActivity() {
-		map = new ObjectMap("data\\PageObjects\\ContactDetailActivity.properties");
+		map = new ObjectMap("src\\test\\resources\\pageObjects\\ContactDetailActivity.properties");
 	}
 
 	/**

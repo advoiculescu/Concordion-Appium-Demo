@@ -27,7 +27,7 @@ public class ContactEditorActivity {
 	 * .properties
 	 */
 	public ContactEditorActivity() {
-		map = new ObjectMap("data\\PageObjects\\ContactEditorActivity.properties");
+		map = new ObjectMap("src\\test\\resources\\pageObjects\\ContactEditorActivity.properties");
 	}
 
 	/**

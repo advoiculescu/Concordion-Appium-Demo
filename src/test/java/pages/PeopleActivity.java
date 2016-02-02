@@ -25,7 +25,7 @@ public class PeopleActivity {
 	 * .properties
 	 */
 	public PeopleActivity() {
-		map = new ObjectMap("data\\PageObjects\\PeopleActivity.properties");
+		map = new ObjectMap("src\\test\\resources\\pageObjects\\PeopleActivity.properties");
 	}
 
 	/**
